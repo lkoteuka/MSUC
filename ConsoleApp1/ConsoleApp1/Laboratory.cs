@@ -23,7 +23,7 @@ namespace ConsoleApp1
             string toString = this.ToShortString() + ":\n";
             for (int i = 0; i < listEq.Count; i++)
             {
-                toString += "    " + listEq[i].ToString() + '\n';
+                toString += "       " + listEq[i].ToString() + '\n';
             }
             return toString;
         }
