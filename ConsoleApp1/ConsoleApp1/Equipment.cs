@@ -8,9 +8,9 @@ namespace ConsoleApp1
 {
     class Equipment
     {
-        private string name { get; set; }
-        private int year { get; set; }
-        private string number { get; set; }
+        public string name { get; set; }
+        public int year { get; set; }
+        public string number { get; set; }
 
         public Equipment(string name, int d, string number)
         {

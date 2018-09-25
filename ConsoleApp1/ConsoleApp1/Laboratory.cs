@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Laboratory
+    class Laboratory: IEnumerable
     {
         private string nameLab;
         private DateTime date;
@@ -54,8 +55,8 @@ namespace ConsoleApp1
                 if (flag)
                 {
                     listEq.Add(equipments[i]);
-                    flag = true;
                 }
+                flag = true;
             }
         }
 
@@ -63,6 +64,33 @@ namespace ConsoleApp1
         {
             if (index >= listEq.Count) return;
             listEq.RemoveAt(index);
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < listEq.Count; i++)
+            {
+                yield  return (listEq[i]);
+            }
+        }
+
+        public IEnumerable MyItr()
+        {
+            for (int i = 0; i < listEq.Count; i++)
+            {
+                if(listEq[i] is Computer)
+                {
+                    if((listEq[i] as Computer).cores > 1)
+                    {
+                        yield return (listEq[i]);
+                    }
+                }
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<Equipment>)listEq).GetEnumerator();
         }
     }
 }
